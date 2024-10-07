@@ -1,19 +1,22 @@
 var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const nunjucks = require("nunjucks");
+const express = require("express");
+const path = require("path");
 
 var indexRouter = require("./routes/index");
 // var usersRouter = require('./routes/users');
 
-var app = express();
+const app = express(); //express 사용하기 위한 변수
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "njk");
-nunjucks.configure("views", {
+app.set("view engine", "html"); //view engine을 html로 지정 (nunjucks를 사용하겠다)
+// app.set("view engine", "njk");
+nunjucks.configure("template", {
+  // nunjucks.configure("views", {
+  autoescape: true,
   express: app,
   watch: true,
 });
